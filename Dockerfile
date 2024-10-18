@@ -1,11 +1,14 @@
-# Use uma imagem base do Java
-FROM openjdk:17-jdk-slim
+# Usar uma imagem Java como base
+FROM openjdk:17-jdk-alpine
 
-# Defina o diretório de trabalho
+# Define o diretório de trabalho dentro do contêiner
 WORKDIR /app
 
-# Copie o arquivo JAR da sua aplicação para a imagem
-COPY target/*.jar app.jar
+# Copia o arquivo .jar gerado para o contêiner
+COPY target/BrownCoffee-0.0.1-SNAPSHOT.jar app.jar
 
-# Execute a aplicação
+# Expõe a porta da aplicação
+EXPOSE 8080
+
+# Comando para iniciar a aplicação
 ENTRYPOINT ["java", "-jar", "app.jar"]
